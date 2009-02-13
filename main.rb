@@ -6,7 +6,7 @@
 # get timing down, so it cuts grass one at a time
 # counter (color change?) for how many times cut grass has been doubled-over
 # better victory panel..(show the lawn still)
-  
+
 begin
 require 'rubygems'
 rescue LoadError; end
@@ -49,6 +49,7 @@ def draw
   #text("Tools:\n@lawn.lawn is an array of:\n'W' <--grass\n'O' <--rocks\n'w' <--cut-grass\n\nHave Fun!",190,20,160,200)
   text("\"to_script.txt\" is what you should read.\n\"to_game.txt\" is what you should write to.\n\nn,s,e,w: commands to move lawnmower.",190,20,160,200) if !@lawn.victory
   text("VICTORY! YES!",190,20,160,200) if @lawn.victory
+  text("#{@lawn.back_overs}",0,0,20,20)
   fill 200
   #@lawn.cut
   @lawn.printlawn

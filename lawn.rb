@@ -29,7 +29,7 @@ class Lawn
         @lawn[a] << 'W'
       end
     end
-    deploy_rock_herd 45 ####MAKE SURE IT IS NOT AN INFINITE LOOP
+    deploy_rock_herd 25 ####MAKE SURE IT IS NOT AN INFINITE LOOP
   end
   
   def deploy_rock_herd num
