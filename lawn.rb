@@ -3,9 +3,12 @@
 # rock in (0,0)  !!!! 
 
 class Lawn
-  attr_accessor :lawn, :dudex, :dudey, :victory, :collision, :output_some_text
+  attr_accessor :lawn, :dudex, :dudey, :victory, :collision, :output_some_text, :back_overs
   def initialize size, offset
     @lawn = [] #'W ','O ',or 'w '
+    @back_overs = 0
+    @del = 15       #number of frames to skip before doing the next action
+    @delay = @del   #counter until next action
     @collision = true
     @output_some_text = false
     @size = size
@@ -181,6 +184,7 @@ class Lawn
     if @dudey > 0 && (@collision && !rock?(@dudex,@dudey-1))
       @dudey -= 1 
       @output_some_text = true
+      @back_overs += 1 if (@lawn[@dudex][@dudey] <=> 'w') == 0
     end
     cut
     success?
@@ -190,6 +194,7 @@ class Lawn
     if @dudey < @lawn[0].length - 1 && (@collision && !rock?(@dudex,@dudey+1))
       @dudey += 1 
       @output_some_text = true
+      @back_overs += 1 if (@lawn[@dudex][@dudey] <=> 'w') == 0
     end
     cut
     success?
@@ -199,6 +204,7 @@ class Lawn
     if @dudex < @lawn.length - 1 && (@collision && !rock?(@dudex+1,@dudey))
       @dudex += 1 
       @output_some_text = true
+      @back_overs += 1 if (@lawn[@dudex][@dudey] <=> 'w') == 0
     end
     cut
     success?
@@ -208,6 +214,7 @@ class Lawn
     if @dudex > 0 && (@collision && !rock?(@dudex-1,@dudey))
       @dudex -= 1 
       @output_some_text = true
+      @back_overs += 1 if (@lawn[@dudex][@dudey] <=> 'w') == 0
     end
     cut
     success?
@@ -265,6 +272,7 @@ class Lawn
   def mouse_pressed x, y
     if @victory && $app.dist(x,y,@vic_button[0] + @vic_button[2],@vic_button[0] + @vic_button[2]) < @vic_button[2]
       @fill = [204, 110, 10]
+      @back_overs = 0
       #puts "#{x}#{y}"
     end
   end
@@ -287,6 +295,16 @@ class Lawn
     filllawn x, y
     textlawn
     cut
+  end
+  
+  def ready_to_step?
+    if @delay > 0
+      @delay -= 1
+      false
+    else
+      @delay = @del
+      true
+    end
   end
 end
 

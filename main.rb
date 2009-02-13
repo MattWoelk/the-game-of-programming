@@ -7,8 +7,9 @@
 # counter (color change?) for how many times cut grass has been doubled-over
 # better victory panel..(show the lawn still)
   
-
-
+begin
+require 'rubygems'
+rescue LoadError; end
 
 require 'ruby-processing'
 load 'lawn.rb'
@@ -55,7 +56,7 @@ def draw
   
   @io.input! if !@lawn.victory 
   #puts @io.read_data
-  @lawn.text_input @io.read_data
+  @lawn.text_input @io.read_data if @lawn.ready_to_step?
   @io.output! @lawn.text_output
 end
 
