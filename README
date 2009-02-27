@@ -1,0 +1,44 @@
+##############################
+#  The Game Of Programming!  #
+##############################
+
+This is a game that can be beaten by writing scripts in any programming language (that can read and write text files).
+
+
+HOW_TO_RUN
+
+The Game Of Programming is written in Ruby-Processing (http://github.com/jashkenas/ruby-processing/tree/master), so you must first install both ruby, and ruby-processing in order to get it working.
+
+
+HOW_TO_PLAY
+
+The main interface of the game are the two files to_script.txt and to_game.txt.  to_script.txt is what your script should read in order to gain information about what is going on in the level, and to_game.txt is the text file that your script should write instructions to.
+
+Instructions should be in the following form:
+-each command should be alone, and on its own, new line.
+-the instruction is read by the program when the file is saved.
+
+example:
++----------+
+|n         |
+|w         | <-- each command is on its own line
+|e         |
+|w         | <-- file does not end with a newline character!
++----------+
+
+Data from game (in to_script.txt) is in the following form:
+-when the game starts up, data will be written to to_script.txt for your script to use when solving the problem. Start up the game and open to_script.txt in a text editor to see what kind of data you get to work with.
+-when the game is ready to receive data after it has been given a command, it will write an acknowledgement to to_script.txt
+
+example:
++----------+
+|WWOOO     |
+|WWWWO     |
+|OWWOW     |
+|WWWWW     |
+|          |
++----------+
+
+Now all you have to do is start up the game, then start up your script, and you're ready to go!
+
+Good Luck!
