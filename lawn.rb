@@ -2,12 +2,14 @@
 # not enough rocks sometimes! it's pretty random! (when fixing, watch for inf loop!)
 # rock in (0,0)  !!!! 
 
+
 class Lawn
   attr_accessor :lawn, :dudex, :dudey, :victory, :collision, :output_some_text, :back_overs
   def initialize size, offset
     @lawn = [] #'W ','O ',or 'w '
+    @poor_move = false
     @back_overs = 0
-    @del = 15       #number of frames to skip before doing the next action
+    @del = 15      #number of frames to skip before doing the next action
     @delay = @del   #counter until next action
     @collision = true
     @output_some_text = false
@@ -159,6 +161,7 @@ class Lawn
   
   def cut
     @lawn[@dudex][@dudey] = 'w' if (@lawn[@dudex][@dudey] <=> 'W') == 0
+    #@poor_move = (@lawn[@dudex][@dudey] <=> 'O') == 0 ? true : false
   end
   
   def key_pressed key
@@ -175,6 +178,7 @@ class Lawn
       dudee
     when 101
       @victory = true
+      @output_some_text = true
     else
     end
     #puts key
@@ -185,8 +189,13 @@ class Lawn
       @dudey -= 1 
       @output_some_text = true
       @back_overs += 1 if (@lawn[@dudex][@dudey] <=> 'w') == 0
+      @poor_move = false
+    else
+      @poor_move = true
     end
+    
     cut
+    @output_some_text = true
     success?
   end
   
@@ -195,8 +204,12 @@ class Lawn
       @dudey += 1 
       @output_some_text = true
       @back_overs += 1 if (@lawn[@dudex][@dudey] <=> 'w') == 0
+      @poor_move = false
+    else
+      @poor_move = true
     end
     cut
+    @output_some_text = true
     success?
   end
   
@@ -205,8 +218,12 @@ class Lawn
       @dudex += 1 
       @output_some_text = true
       @back_overs += 1 if (@lawn[@dudex][@dudey] <=> 'w') == 0
+      @poor_move = false
+    else
+      @poor_move = true
     end
     cut
+    @output_some_text = true
     success?
   end
   
@@ -215,8 +232,12 @@ class Lawn
       @dudex -= 1 
       @output_some_text = true
       @back_overs += 1 if (@lawn[@dudex][@dudey] <=> 'w') == 0
+      @poor_move = false
+    else
+      @poor_move = true
     end
     cut
+    @output_some_text = true
     success?
   end
   
@@ -249,6 +270,7 @@ class Lawn
     end
     puts "success"
     @victory = true
+    @output_some_text = true
     return true
   end
   
@@ -263,7 +285,11 @@ class Lawn
   def text_output
     if @output_some_text
       @output_some_text = false
-      "\nack"
+      if !@victory
+        @poor_move ? "\nbad" : "\nack" 
+      else
+        "\nvictory!"
+      end
     else
       nil
     end

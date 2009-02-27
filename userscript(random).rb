@@ -1,8 +1,4 @@
 @inputted
-@x
-@y
-@xp
-@yp
 
 def output! text
   file = File.open("to_game.txt", "a")
@@ -33,35 +29,8 @@ def wait_for_ack
   
   puts "ACK!" if (inn <=> "ack") != 0
   puts "bad" if (inn <=> "bad") != 0
-  go_to_grass @x, @y
+  go_at_random
   @inputted = input!
-end
-
-def tall_grass? x, y
-  return true if in?(x, y) && (@data[x][y] <=> 'W') == 0
-  false
-end
-
-def in? x, y
-  return true if x >= 0 && y >= 0 && x < @data.length && y < @data[0].length
-end
-
-def go_to_grass x, y
-  if tall_grass? x-1, y
-    @xp = x-1
-    output! "\nw"
-  elsif tall_grass? x, y-1
-    @yp = y-1
-    output! "\nn"
-  elsif tall_grass? x+1, y
-    @xp = x+1
-    output! "\ne"
-  elsif tall_grass? x, y+1
-    @yp = y+1
-    output! "\ns"
-  else
-    go_at_random
-  end
 end
 
 def go_at_random
@@ -69,16 +38,12 @@ def go_at_random
   #puts r
   case r
   when 0
-    @yp = @y-1
     output! "\nn"
   when 1
-    @yp = @y+1
     output! "\ns"
   when 2
-    @xp = @x+1
     output! "\ne"
   when 3
-    @xp = @x-1
     output! "\nw"
   end
 end
@@ -91,12 +56,7 @@ end
 
 if __FILE__ == $0
   #get initial data:
-  count = 0
   @inputted = input!
-  @x = 0
-  @y = 0
-  @xp = 0
-  @yp = 0
   
   @data = Array.new(@inputted.length)
   @data.length.times do |x|

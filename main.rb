@@ -3,8 +3,7 @@
 # => do random tasks (lawmowing?!) by making and coding algorithms.
 
 # NEXT TASKS:
-# get timing down, so it cuts grass one at a time
-# counter (color change?) for how many times cut grass has been doubled-over
+# counter (color change?) error
 # better victory panel..(show the lawn still)
 
 begin
