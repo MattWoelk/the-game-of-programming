@@ -8,7 +8,7 @@
 
 def output! text
   file = File.open("to_game.txt", "a")
-  file.print text + "\n"
+  file.print text if !text.nil?
   file.close
 end
 
