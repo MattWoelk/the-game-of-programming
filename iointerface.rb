@@ -5,8 +5,6 @@ class IoInterface
     @data_read = []
     @send_to = send_to
     @new = false
-    
-    #@last_modified = 0 #doesn't work. only down to the second..
   end
   
   def error
@@ -26,7 +24,7 @@ class IoInterface
   def output! text
     file = File.open("to_script.txt", "a")
     file.print text if !text.nil?
-    file.close #then do this only once at the end of something??
+    file.close
   end
   
   def read_data
@@ -37,7 +35,6 @@ class IoInterface
   end
 
   def input!
-    #@last_modified = File.mtime("to_game.txt") #doesn't work => see top.
     @data_read = []
     file = File.open("to_game.txt", "r")
     while content = file.gets

@@ -1,7 +1,6 @@
+#This is the entirety of level 1: the lawn-mowing level.
 #current problem:
 # not enough rocks sometimes! it's pretty random! (when fixing, watch for inf loop!)
-# rock in (0,0)  !!!! 
-
 
 class Lawn
   attr_accessor :lawn, :dudex, :dudey, :victory, :collision, :output_some_text, :back_overs
@@ -21,7 +20,6 @@ class Lawn
     @vic_button = [@offset + 30, @offset + 30, 35] #x,y,r
     @fill = [50, 50, 10]
     @checked_places = [] #false if it's been checked over
-    #$app.ellipse_mode CORNER
   end
   
   def filllawn(x,y)
@@ -130,15 +128,10 @@ class Lawn
       $app.ellipse(@vic_button[0], @vic_button[1], @vic_button[2]*2, @vic_button[2]*2)
     else
       @lawn.length.times do |x|
-        #ps << "row #{x}: "
         @lawn[0].length.times do |y|
-          #ps << @lawn[x][y]
           drawelement x, y, @lawn[x][y]
         end
-        #puts ps + ""
-        #ps = ""
       end
-      #puts "--lawn was just printed--"
       drawdude(@dudex*@size + @offset,@dudey*@size + @offset,@size,@size)
     end
   end
@@ -161,22 +154,21 @@ class Lawn
   
   def cut
     @lawn[@dudex][@dudey] = 'w' if (@lawn[@dudex][@dudey] <=> 'W') == 0
-    #@poor_move = (@lawn[@dudex][@dudey] <=> 'O') == 0 ? true : false
   end
   
   def key_pressed key
     case key
     when 5000..800000
       #this is to catch shift and arrows
-    when 119
+    when 119 # 'w'
       duden
-    when 115
+    when 115 # 's'
       dudes
-    when 97
+    when 97 # 'a'
       dudew
-    when 100
+    when 100 # 'd'
       dudee
-    when 101
+    when 101 # 'e'
       @victory = true
       @output_some_text = true
     else
@@ -305,7 +297,6 @@ class Lawn
   
   def mouse_released x, y
     if @victory && $app.dist(x,y,@vic_button[0] + @vic_button[2],@vic_button[0] + @vic_button[2]) < @vic_button[2]
-      #reset everything!!
       reset
     end
     @fill = [50,50,10]

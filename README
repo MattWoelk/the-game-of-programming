@@ -5,6 +5,13 @@
 This is a game that can be beaten by writing scripts in any programming language (that can read and write text files).
 
 
+OBJECTIVE
+
+Mow all of the lawn with the fewest number of back-overs by writing a script that does it for you.
+-back-overs are when the lawnmower (the orange square) goes over an already-cut piece of lawn
+-back-overs are counted in the counter on the screen in the top-left of the game window.
+
+
 HOW_TO_RUN
 
 The Game Of Programming is written in Ruby-Processing (http://github.com/jashkenas/ruby-processing/tree/master), so you must first install both ruby, and ruby-processing in order to get it working.
@@ -43,3 +50,10 @@ example:
 Now all you have to do is start up the game, then start up your script, and you're ready to go!
 
 Good Luck!
+
+
+
+RANDOM_QUIRKS_AND_THINGS_TO_BE_AWARE_OF
+
+-The text box in the game will run ruby commands when you hit 'enter'. It has no real purpose other than being fun to play with. 
+-

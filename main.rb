@@ -1,8 +1,8 @@
 #this is the game of programming!
 #objectives of the game:
-# => do random tasks (lawmowing?!) by making and coding algorithms.
+# => do tasks (level 1: law-mowing) by coding algorithms.
 
-# NEXT TASKS:
+# NEW FEATURES UNDER DEVELOPMENT:
 # counter (color change?) error
 # better victory panel..(show the lawn still)
 
@@ -35,27 +35,21 @@ def setup
   @lawn.filllawn(10,12) ############################
   fill(120,120,120)
   @lawn.textlawn
-  #@io.output! @lawn.text
   
   @io.output! @lawn.text
-  #@io.input!
-  #puts @io.read_data
   @lawn.cut
 end
 
 def draw
   background 120
-  #text("Tools:\n@lawn.lawn is an array of:\n'W' <--grass\n'O' <--rocks\n'w' <--cut-grass\n\nHave Fun!",190,20,160,200)
   text("\"to_script.txt\" is what you should read.\n\"to_game.txt\" is what you should write to.\n\nn,s,e,w: commands to move lawnmower.",190,20,160,200) if !@lawn.victory
   text("VICTORY! YES!",190,20,160,200) if @lawn.victory
   text("#{@lawn.back_overs}",0,0,20,20)
   fill 200
-  #@lawn.cut
   @lawn.printlawn
   @text.drawtext
   
-  @io.input! if !@lawn.victory 
-  #puts @io.read_data
+  @io.input! if !@lawn.victory
   @lawn.text_input @io.read_data if @lawn.ready_to_step?
   @io.output! @lawn.text_output
 end
@@ -63,8 +57,6 @@ end
 def key_pressed
   @lawn.key_pressed key
   @text.key_pressed key
-  #puts @text.buff
-  #@lawn.lawn.each {|a| a = 'w '}
 end
 
 def mouse_pressed
