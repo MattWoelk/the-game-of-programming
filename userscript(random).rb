@@ -23,10 +23,10 @@ def input!
 end
 
 def wait_for_ack
-  while (inn = input!.length) <= @inputted.length 
+  while (inn = input!).length <= @inputted.length 
   end
-  puts "ACK!" if (inn <=> "ack") == 0
-  puts "bad" if (inn <=> "bad") == 0
+  puts "ACK!" if (inn[-1].strip <=> "ack") == 0
+  puts "bad" if (inn[-1].strip <=> "bad") == 0
   go_at_random
   @inputted = input!
 end
