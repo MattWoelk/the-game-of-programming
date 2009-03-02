@@ -312,6 +312,9 @@ class Lawn
     filllawn x, y
     textlawn
     cut
+    
+    $io.clearfiles
+    $io.output! text
   end
   
   def ready_to_step?

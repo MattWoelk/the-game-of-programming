@@ -24,8 +24,8 @@ def setup
   @offset = 30
   @lawn = Lawn.new @size, @offset
   @text = TextIn.new 10, 220, self
-  @io = IoInterface.new @lawn
-  @io.clearfiles
+  $io = IoInterface.new @lawn
+  $io.clearfiles
   ellipse_mode CORNER
   background 200
   
@@ -36,7 +36,7 @@ def setup
   fill(120,120,120)
   @lawn.textlawn
   
-  @io.output! @lawn.text
+  $io.output! @lawn.text
   @lawn.cut
 end
 
@@ -49,9 +49,9 @@ def draw
   @lawn.printlawn
   @text.drawtext
   
-  @io.input! if !@lawn.victory
-  @lawn.text_input @io.read_data if @lawn.ready_to_step?
-  @io.output! @lawn.text_output
+  $io.input! if !@lawn.victory
+  @lawn.text_input $io.read_data if @lawn.ready_to_step?
+  $io.output! @lawn.text_output
 end
 
 def key_pressed
